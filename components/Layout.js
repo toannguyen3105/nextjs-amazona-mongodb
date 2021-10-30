@@ -13,9 +13,10 @@ import {
   Switch,
   Badge,
 } from "@material-ui/core";
+import Cookies from "js-cookie";
+
 import useStyles from "../utils/styles";
 import { Store } from "../utils/Store";
-import Cookies from "js-cookie";
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
