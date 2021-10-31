@@ -1,4 +1,4 @@
-import { makeStyles } from "@material-ui/core";
+import { capitalize, makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles({
   navbar: {
@@ -21,10 +21,17 @@ const useStyles = makeStyles({
   footer: {
     textAlign: "center",
   },
-
   section: {
     marginTop: 10,
     marginBottom: 10,
+  },
+  form: {
+    maxWidth: 800,
+    margin: "0 auto",
+  },
+  navbarButton: {
+    color: "#fff",
+    textTransform: "initial",
   },
 });
 
