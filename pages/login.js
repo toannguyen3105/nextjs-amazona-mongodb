@@ -6,7 +6,7 @@ import {
   Typography,
   Link,
 } from "@material-ui/core";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import axios from "axios";
@@ -35,7 +35,7 @@ export default function Login() {
     if (userInfo) {
       router.push("/");
     }
-  }, []);
+  }, [router, userInfo]);
 
   const submitHandler = async ({ email, password }) => {
     closeSnackbar();
@@ -123,19 +123,13 @@ export default function Login() {
           </ListItem>
 
           <ListItem>
-            <Button
-              variant="contained"
-              fullWidth
-              type="submit"
-              fullWidth
-              color="primary"
-            >
+            <Button variant="contained" fullWidth type="submit" color="primary">
               Login
             </Button>
           </ListItem>
 
           <ListItem>
-            Don't have an account? &nbsp;
+            {`Don't have an account?`} &nbsp;
             <NextLink href={`/register?redirect=${redirect || "/"}`} passHref>
               <Link>Register</Link>
             </NextLink>

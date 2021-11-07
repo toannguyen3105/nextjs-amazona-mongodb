@@ -36,7 +36,7 @@ export default function Register() {
     if (userInfo) {
       router.push("/");
     }
-  }, []);
+  }, [userInfo, router]);
 
   const submitHandler = async ({ name, email, password, confirmPassword }) => {
     closeSnackbar();
@@ -192,13 +192,7 @@ export default function Register() {
           </ListItem>
 
           <ListItem>
-            <Button
-              variant="contained"
-              fullWidth
-              type="submit"
-              fullWidth
-              color="primary"
-            >
+            <Button variant="contained" fullWidth type="submit" color="primary">
               Register
             </Button>
           </ListItem>
