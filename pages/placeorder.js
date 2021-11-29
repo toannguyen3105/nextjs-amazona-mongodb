@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Card,
@@ -8,6 +8,7 @@ import {
   ListItem,
   MenuItem,
   Select,
+  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -28,12 +29,15 @@ import CheckoutWizard from "../components/CheckoutWizard";
 import { Store } from "../utils/Store";
 import Layout from "../components/Layout";
 import useStyles from "../utils/styles";
+import { getError } from "../utils/error";
+import Cookies from "js-cookie";
 
 function PlaceOrder() {
   const classes = useStyles();
   const router = useRouter();
   const { state, dispatch } = useContext(Store);
   const {
+    userInfo,
     cart: { cartItems, shippingAddress, paymentMethod },
   } = state;
 
@@ -52,15 +56,35 @@ function PlaceOrder() {
   }, [paymentMethod]);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-  const placeOrderHandler = () => {
+  const [loading, setLoading] = useState(false);
+  const placeOrderHandler = async () => {
     closeSnackbar();
     try {
-      console.log("z");
-    } catch (err) {
-      enqueueSnackbar(
-        err?.response.data ? err.response.data.message : err.message,
-        { variant: "error" }
+      setLoading(true);
+      const { data } = await axios.post(
+        "/api/orders",
+        {
+          orderOItems: cartItems,
+          shippingAddress,
+          paymentMethod,
+          itemsPrice,
+          shippingPrice,
+          taxPrice,
+          totalPrice,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${userInfo.token}`,
+          },
+        }
       );
+      dispatch({ type: "CART_CLEAR" });
+      Cookies.remove("cartItems");
+      setLoading(false);
+      router.push(`/order/${data._id}`);
+    } catch (err) {
+      setLoading(false);
+      enqueueSnackbar(getError(err), { variant: "error" });
     }
   };
   return (
@@ -220,6 +244,11 @@ function PlaceOrder() {
                   Place Order
                 </Button>
               </ListItem>
+              {loading && (
+                <ListItem>
+                  <CircularProgress />
+                </ListItem>
+              )}
             </List>
           </Card>
         </Grid>
