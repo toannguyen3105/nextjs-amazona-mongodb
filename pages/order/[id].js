@@ -22,8 +22,6 @@ import { useRouter } from "next/router";
 import { PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 import { useSnackbar } from "notistack";
 
-import CheckoutWizard from "../../components/CheckoutWizard";
-
 import { Store } from "../../utils/Store";
 import Layout from "../../components/Layout";
 import useStyles from "../../utils/styles";
@@ -199,7 +197,6 @@ function Order({ params }) {
 
   return (
     <Layout title={`Order ${orderId}`}>
-      <CheckoutWizard activeStep={3} />
       <Typography component="h1" variant="h1">
         Order {orderId}
       </Typography>
