@@ -84,6 +84,15 @@ function reducer(state, action) {
         },
       };
     }
+    case "CART_CLEAR": {
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          cartItems: [],
+        },
+      };
+    }
 
     case "USER_LOGIN":
       return {
@@ -97,6 +106,8 @@ function reducer(state, action) {
         userInfo: null,
         cart: {
           cartItems: [],
+          shippingAddress: {},
+          paymentMethod: "",
         },
       };
     default:
