@@ -92,7 +92,7 @@ function Order({ params }) {
     {
       loading: true,
       order: {},
-      order: "",
+      error: "",
     }
   );
 

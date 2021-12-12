@@ -17,7 +17,6 @@ const signToken = (user) => {
 
 const isAuth = async (req, res, next) => {
   const { authorization } = req.headers;
-  console.log(authorization);
   if (authorization) {
     // Bearer xxx
     const token = authorization.slice(7, authorization.length);
