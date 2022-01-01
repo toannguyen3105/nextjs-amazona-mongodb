@@ -84,7 +84,7 @@ function OrderHistory() {
   }, []);
 
   return (
-    <Layout title={`Order History`}>
+    <Layout title="Order History">
       <Grid container spacing={1}>
         <Grid item md={3} xs={12}>
           <Card className={classes.section}>
@@ -96,7 +96,7 @@ function OrderHistory() {
               </NextLink>
               <NextLink href="/order-history" passHref>
                 <ListItem selected button component="a">
-                  <ListItemText primary="User History"></ListItemText>
+                  <ListItemText primary="Order History"></ListItemText>
                 </ListItem>
               </NextLink>
             </List>
@@ -121,12 +121,14 @@ function OrderHistory() {
                   <TableContainer>
                     <Table>
                       <TableHead>
-                        <TableRow>ID</TableRow>
-                        <TableRow>DATE</TableRow>
-                        <TableRow>TOTAL</TableRow>
-                        <TableRow>PAID</TableRow>
-                        <TableRow>DELIVERED</TableRow>
-                        <TableRow>ACTION</TableRow>
+                        <TableRow>
+                          <TableCell>ID</TableCell>
+                          <TableCell>DATE</TableCell>
+                          <TableCell>TOTAL</TableCell>
+                          <TableCell>PAID</TableCell>
+                          <TableCell>DELIVERED</TableCell>
+                          <TableCell>ACTION</TableCell>
+                        </TableRow>
                       </TableHead>
                       <TableBody>
                         {orders.map((order) => (

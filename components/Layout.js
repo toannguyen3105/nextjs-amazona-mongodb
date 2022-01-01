@@ -1,26 +1,25 @@
-import React, { useContext, useState } from "react";
-import Head from "next/head";
-import NextLink from "next/link";
 import {
   AppBar,
-  Container,
-  createTheme,
-  Link,
-  Toolbar,
-  Typography,
-  ThemeProvider,
-  CssBaseline,
-  Switch,
   Badge,
   Button,
+  Container,
+  createTheme,
+  CssBaseline,
+  Link,
   Menu,
   MenuItem,
+  Switch,
+  ThemeProvider,
+  Toolbar,
+  Typography,
 } from "@material-ui/core";
 import Cookies from "js-cookie";
+import Head from "next/head";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
-
-import useStyles from "../utils/styles";
+import React, { useContext, useState } from "react";
 import { Store } from "../utils/Store";
+import useStyles from "../utils/styles";
 
 export default function Layout({ title, description, children }) {
   const router = useRouter();
@@ -141,6 +140,15 @@ export default function Layout({ title, description, children }) {
                     >
                       Order History
                     </MenuItem>
+                    {userInfo.isAdmin && (
+                      <MenuItem
+                        onClick={(e) =>
+                          loginMenuCloseHandler(e, "/admin/dashboard")
+                        }
+                      >
+                        Admin dashboard
+                      </MenuItem>
+                    )}
                     <MenuItem onClick={logoutClickHandler}>Logout</MenuItem>
                   </Menu>
                 </>
