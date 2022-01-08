@@ -123,7 +123,7 @@ function Profile() {
                             fullWidth
                             id="name"
                             label="Name"
-                            inputProps={{ type: "text" }}
+                            inputProps={{ type: "name" }}
                             error={Boolean(errors.name)}
                             helperText={
                               errors.name
