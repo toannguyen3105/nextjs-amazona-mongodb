@@ -1,14 +1,11 @@
-import React, { useContext, useEffect, useState } from "react";
 import {
   Button,
   Card,
+  CircularProgress,
   Grid,
   Link,
   List,
   ListItem,
-  MenuItem,
-  Select,
-  CircularProgress,
   Table,
   TableBody,
   TableCell,
@@ -17,20 +14,19 @@ import {
   TableRow,
   Typography,
 } from "@material-ui/core";
-import NextLink from "next/link";
-import Image from "next/image";
-import dynamic from "next/dynamic";
 import axios from "axios";
+import Cookies from "js-cookie";
+import dynamic from "next/dynamic";
+import Image from "next/image";
+import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { useSnackbar } from "notistack";
-
+import React, { useContext, useEffect, useState } from "react";
 import CheckoutWizard from "../components/CheckoutWizard";
-
-import { Store } from "../utils/Store";
 import Layout from "../components/Layout";
-import useStyles from "../utils/styles";
 import { getError } from "../utils/error";
-import Cookies from "js-cookie";
+import { Store } from "../utils/Store";
+import useStyles from "../utils/styles";
 
 function PlaceOrder() {
   const classes = useStyles();
@@ -53,7 +49,7 @@ function PlaceOrder() {
     if (!paymentMethod) {
       router.push("/payment");
     }
-  }, [paymentMethod]);
+  }, [paymentMethod, router]);
 
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const [loading, setLoading] = useState(false);

@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import axios from "axios";
-import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -91,7 +90,7 @@ function ProductEdit({ params }) {
       };
       fetchData();
     }
-  }, []);
+  }, [productId, router, setValue, userInfo]);
 
   const submitHandler = async ({
     name,

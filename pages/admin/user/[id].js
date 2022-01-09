@@ -12,7 +12,6 @@ import {
   Typography,
 } from "@material-ui/core";
 import axios from "axios";
-import Cookies from "js-cookie";
 import dynamic from "next/dynamic";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
@@ -52,11 +51,10 @@ function reducer(state, action) {
 function UserEdit({ params }) {
   const userId = params.id;
   const { state } = useContext(Store);
-  const [{ loading, error, loadingUpdate, loadingUpload }, dispatch] =
-    useReducer(reducer, {
-      loading: true,
-      error: "",
-    });
+  const [{ loading, error, loadingUpdate }, dispatch] = useReducer(reducer, {
+    loading: true,
+    error: "",
+  });
   const {
     handleSubmit,
     control,
@@ -88,7 +86,7 @@ function UserEdit({ params }) {
       };
       fetchData();
     }
-  }, []);
+  }, [router, setValue, userId, userInfo]);
 
   const submitHandler = async ({ name }) => {
     closeSnackbar();

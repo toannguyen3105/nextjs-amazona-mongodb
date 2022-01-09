@@ -111,7 +111,7 @@ function Order({ params }) {
   const router = useRouter();
   const { state } = useContext(Store);
   const { userInfo } = state;
-  const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   const [
     { loading, error, order, successPay, loadingDeliver, successDeliver },
@@ -188,7 +188,15 @@ function Order({ params }) {
 
       loadPaypalScript();
     }
-  }, [order, successPay, successDeliver]);
+  }, [
+    order,
+    successPay,
+    successDeliver,
+    orderId,
+    paypalDispatch,
+    router,
+    userInfo,
+  ]);
 
   function createOrder(data, actions) {
     return actions.order

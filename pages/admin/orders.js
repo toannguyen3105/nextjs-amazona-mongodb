@@ -90,7 +90,7 @@ function AdminOrders() {
       }
     };
     fetchData();
-  }, []);
+  }, [router, userInfo]);
 
   return (
     <Layout title="Order History">

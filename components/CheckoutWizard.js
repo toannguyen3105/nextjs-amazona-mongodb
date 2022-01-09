@@ -1,5 +1,4 @@
 import { Step, StepLabel, Stepper } from "@material-ui/core";
-import { mergeClasses } from "@material-ui/styles";
 import React from "react";
 import useStyles from "../utils/styles";
 

@@ -88,7 +88,7 @@ function AdminDashboard() {
       }
     };
     fetchData();
-  }, []);
+  }, [router, userInfo]);
 
   return (
     <Layout title="Order History">

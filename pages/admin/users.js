@@ -103,7 +103,7 @@ function AdminUsers() {
     } else {
       fetchData();
     }
-  }, [successDelete]);
+  }, [successDelete, router, userInfo]);
 
   const { enqueueSnackbar } = useSnackbar();
   const deleteHandler = async (userId) => {
